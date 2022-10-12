@@ -41,6 +41,7 @@ padding-top: 5px;padding-bottom: 5px">
 </template>
 <script>
 import axios from "axios";
+import apiClient from "@/components/internal/helper/api_index";
 
 export default {
 
@@ -49,13 +50,7 @@ export default {
     this.id=this.$route.params.id;
     this.PreviousMsg()
     window.Echo.channel('chat23').listen('ChatEvent', (e) => {
-         // this.all_msg = e;
           this.PreviousMsg();})
-    // this.doSend();
-    //this.PreviousMsg();
-   //this.doReceive();
-    //this.PreviousMsgCustomer();
-    //this.compareTiming(this.all_msg,this.all_rcv_msg);
   },
   created(){
     this.scrollSet();
@@ -72,7 +67,7 @@ export default {
   },
   methods:{
    doSend(){
-     axios.post('http://localhost:8000/api/admin/live-chat', {
+     apiClient.post('/api/admin/live-chat', {
        user_id: this.userdata.id,
        customer_id:this.id,
        messages:this.messages,
@@ -88,36 +83,12 @@ export default {
          }),)
    },
     PreviousMsg(){
-      axios.post('http://localhost:8000/api/admin/previous-msg/' +  this.id).then((response)=>{
+      apiClient.post('/api/admin/previous-msg/' +  this.id).then((response)=>{
         console.log( typeof (this.id)+ "admin_rcv");
         this.all_msg= response.data.all_msg
       })
     },
-    // doReceive(){
-    //   axios.post('http://localhost:8000/api/admin/receive-chat', {
-    //     user_id: this.userdata.id,
-    //     customer_id:this.id,
-    //     messages:this.messages,
-    //   }).then((data)=>{
-    //     window.Echo.channel('chat23').listen('ChatEvent', (e) => {
-    //      // this.all_msg = e;
-    //       this.PreviousMsg();
-    //     })
-    //   }).catch(error =>
-    //       this.$toast("Invalid Message", {
-    //         timeout: 1000,
-    //       }),)
-    //
-    // },
-    // PreviousMsgCustomer(){
-    //   axios.post('http://localhost:8000/api/customer/previous-msg/' + this.id).then((response)=>{
-    //     this.all_rcv_msg= response.data.all_msg
-    //   })
-    // },
     scrollSet(){
-      // let element = document.getElementById("sid");
-      // element.scrollTop = element.scrollHeight
-      // element.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
     }
 
   },

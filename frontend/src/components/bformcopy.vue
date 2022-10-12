@@ -142,33 +142,7 @@
         </div>
       </form>
       <hr>
-<!--      <div class="row" v-if="isSubmitted">-->
-<!--        <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">-->
-<!--          <div class="panel panel-default">-->
-<!--            <div class="panel-heading">-->
-<!--              <h4>Your Data</h4>-->
-<!--            </div>-->
-<!--            <div class="panel-body">-->
-<!--              <p>Mail:{{userdata.email}}</p>-->
-<!--              <p>Password:{{userdata.password}}</p>-->
-<!--              <p>Age:{{userdata.age}}</p>-->
-<!--              <p>Message:{{message}} </p>-->
-<!--              <p><strong>Send Mail?</strong></p>-->
-<!--              <ul>-->
-<!--                <li v-for="mail in sendMail" :key="mail">-->
-<!--                  {{mail}}-->
-
-<!--                </li>-->
-<!--              </ul>-->
-<!--              <p>Gender:{{gender}}</p>-->
-<!--              <p>Priority:{{selectedPriority}}</p>-->
-<!--              <p>Switched:</p>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
     </div>
-
 
 
 
@@ -182,6 +156,7 @@
 
 <script>
 import axios from 'axios';
+import apiClient from "@/components/internal/helper/api_index";
 
 
 export default {
@@ -219,7 +194,7 @@ export default {
       })
     },*/
     saveData(){
-      axios.post('http://localhost:8000/api/customer', {
+      apiClient.post('/api/customer', {
         Name:this.userdata.name,
         Email: this.userdata.email,
         password: this.userdata.password,
@@ -230,7 +205,7 @@ export default {
         Transport : this.transport,
         Priority: this.selectedPriority
       }).then((data)=>{
-        this.$toast("Succesfully Registered", {
+        this.$toast("Successfully Registered", {
           timeout: 1000,
         });
         setTimeout(()=>{

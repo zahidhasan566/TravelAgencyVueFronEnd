@@ -123,6 +123,7 @@ h1 {
 import axios from "axios";
 import $ from 'jquery';
 import { BModal, VBModal } from 'bootstrap-vue';
+import apiClient from "@/components/internal/helper/api_index";
 
 export default {
   data() {
@@ -145,7 +146,7 @@ export default {
       if (this.emailLogin === "" || this.passwordLogin === "") {
         this.emptyFields = true;
       } else {
-        axios.post('http://localhost:8000/api/login', {
+        apiClient.post('/api/login', {
           email:this.email,
           password : this.password,
           device_name: this.device_name

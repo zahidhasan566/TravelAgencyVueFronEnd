@@ -20,6 +20,7 @@
 <script>
 import axios from "axios";
 import Echo from 'laravel-echo'
+import apiClient from "@/components/internal/helper/api_index";
 
 export default {
   props: ["userdata"],
@@ -46,7 +47,7 @@ export default {
       formData.append('postContent', this.postContent)
       formData.append('profile_picture', this.profile_picture)
       formData.append('newPost', this.newPost)
-      axios.post('http://localhost:8000/api/admin/create-blog-post',formData, { headers: { 'Content-Type': 'multipart/form-data', 'Content-type': 'application/json' }
+      apiClient.post('/api/admin/create-blog-post',formData, { headers: { 'Content-Type': 'multipart/form-data', 'Content-type': 'application/json' }
         // Id: this.userdata.id,
         // postTitle:this.postTitle,
         // postContent : this.postContent,
@@ -70,14 +71,9 @@ export default {
 
   },
   created(){
-    // window.Echo.channel('postCreate23').listen('.PostCreated', (e) => {
-    //  console.log("show up without refresh")
-    //   alert('show up without refresh');
-    // })
     window.Echo.channel('postCreate23').listen('.PostCreated', (e) => {
       console.log(e);
       alert(e)
-
     })
 
   }

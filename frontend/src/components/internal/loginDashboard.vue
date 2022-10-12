@@ -30,6 +30,7 @@ import axios from "axios";
 import adminSidebar from '../internal/layout/sidebar/AdminSidebar.vue';
 // import adminSidebar2 from '../internal/layout/sidebar/AdminSidebar2.vue';
 import Topbar from '../internal/layout/sidebar/Topbar.vue';
+import apiClient from "@/components/internal/helper/api_index";
 
 export default {
   components: {
@@ -52,7 +53,7 @@ export default {
       'Content-Type': 'application/json'
     };
 
-    axios.get('http://localhost:8000/api/user',  {
+    apiClient.get('/api/user',  {
           headers: {
             Authorization: 'Bearer ' + token, //the token is a variable which holds the token
             'Content-Type': 'application/json'
@@ -73,7 +74,7 @@ export default {
       return localStorage.getItem("token")
     },
     logout(){
-      axios.post('http://localhost:8000/api/logout').then((response)=>{
+      apiClient.post('/api/logout').then((response)=>{
         localStorage.removeItem("token");
         this.$toast("Successfully Logout", {
           timeout: 2000,
@@ -82,7 +83,7 @@ export default {
       }).catch(error => console.log(error))
     },
     getRole(id){
-      axios.post('http://localhost:8000/api/dashboard',{
+      apiClient.post('/api/dashboard',{
         id:id,
       })
         .then(response => {

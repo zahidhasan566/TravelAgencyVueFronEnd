@@ -23,6 +23,7 @@
 </template>
 <script>
 import axios from "axios";
+import apiClient from "@/components/internal/helper/api_index";
 
 export default {
 
@@ -36,7 +37,7 @@ export default {
 
   methods:{
     doRoom(){
-      axios.post('http://localhost:8000/api/customer/create-room/', {
+      apiClient.post('/api/customer/create-room/', {
         Id:this.id,
       }).then((data)=>{
         this.$toast("Successfully Created", {

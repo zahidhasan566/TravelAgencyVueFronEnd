@@ -27,11 +27,6 @@
                   </div>
                 </div>
               </div>
-<!--              <div v-for="am in all_msg" :key="am" style="margin-left: 70px;margin-top: 10px;margin-bottom: 5px;-->
-<!--             color: white;background: #007bff;padding-left: 10px;border-radius: 33px;-->
-<!--             ">-->
-<!--                {{am['message']}}-->
-<!--              </div>-->
             </div>
           </div>
           <input  type="text" v-model="messages" class="form-control" placeholder="Chat" required>
@@ -46,6 +41,7 @@
 </template>
 <script>
 import axios from "axios";
+import apiClient from "@/components/internal/helper/api_index";
 
 export default {
 
@@ -69,7 +65,7 @@ export default {
   },
   methods:{
    doSend(){
-     axios.post('http://localhost:8000/api/admin/live-chat', {
+     apiClient.post('/api/admin/live-chat', {
        user_id: this.userdata.id,
        customer_id:this.id,
        messages:this.messages,
@@ -84,7 +80,7 @@ export default {
          }),)
    },
     PreviousMsg(){
-      axios.post('http://localhost:8000/api/admin/previous-msg/' +  this.userdata.id, {
+      apiClient.post('/api/admin/previous-msg/' +  this.userdata.id, {
         customer_id:this.id,
         user_id: this.userdata.id,
       }).then((response)=>{
@@ -92,7 +88,7 @@ export default {
       })
     },
     doReceive(){
-      axios.post('http://localhost:8000/api/admin/receive-chat', {
+      apiClient.post('/api/admin/receive-chat', {
         user_id: this.userdata.id,
         customer_id:this.id,
         messages:this.messages,
@@ -109,12 +105,11 @@ export default {
     },
 
     PreviousMsgCustomer(){
-      axios.post('http://localhost:8000/api/customer/previous-msg/' + this.id).then((response)=>{
+      apiClient.post('/api/customer/previous-msg/' + this.id).then((response)=>{
         this.all_rcv_msg= response.data.all_msg
       })
     },
     compareTiming(){
-
     }
 
   }

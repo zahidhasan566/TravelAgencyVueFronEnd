@@ -115,6 +115,7 @@
 <script>
 
 import axios from "axios";
+import apiClient from "@/components/internal/helper/api_index";
 
 export default {
   data() {
@@ -139,7 +140,7 @@ export default {
       this.$router.push({name: "post_create"});
     },
     getPost(page = 1) {
-      axios.post('http://localhost:8000/api/admin/view-blog-post?page=' + page)
+      apiClient.post('/api/admin/view-blog-post?page=' + page)
           .then(response => {
             this.blogPost = response.data.blogPost
           })
@@ -157,11 +158,11 @@ export default {
       }
     },
     deletePost(Id) {
-      axios.post('http://localhost:8000/api/admin/delete-blog-post', {
+      apiClient.post('/api/admin/delete-blog-post', {
         Id: Id
       })
           .then(response => {
-            this.$toast("Succesfully Deleted", {
+            this.$toast("Successfully Deleted", {
               timeout: 2000,
             });
             setTimeout(()=>{
@@ -174,7 +175,7 @@ export default {
     },
     updateData(Id){
       console.log(Id)
-      axios.post('http://localhost:8000/api/blog/update', {
+      apiClient.post('/api/blog/update', {
         Id:Id,
       }).then((response)=>{
         this.blogs_update = response.data.blogs_update
@@ -186,9 +187,9 @@ export default {
       formData.append(' title', this.blogs_update['title'])
       formData.append('bcontent', this.blogs_update['content'])
       formData.append('update_blog_picture', this.update_blog_picture)
-      axios.post('http://localhost:8000/api/blog/update/confirm', formData, { headers: { 'Content-Type': 'multipart/form-data', 'Content-type': 'application/json' }
+      apiClient.post('/api/blog/update/confirm', formData, { headers: { 'Content-Type': 'multipart/form-data', 'Content-type': 'application/json' }
       }).then((response)=>{
-        this.$toast("Succesfully Updated", {
+        this.$toast("Successfully Updated", {
           timeout: 2000,
         });
         setTimeout(()=>{

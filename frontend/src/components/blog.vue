@@ -2,9 +2,6 @@
   <div>
     <div class="container">
      <h1> Recent News</h1>
-<!--    <div v-for="blog in blogs" :key="blog">-->
-<!--      {{blog}}-->
-<!--    </div>-->
       <div class="row">
       <article class="col-12 col-md-6 tm-post" v-for="bp in blogPost.data " :key="bp">
         <hr class="tm-hr-primary">
@@ -43,6 +40,7 @@
 
 import axios from "axios";
 import Paginate from 'vuejs-paginate'
+import apiClient from "@/components/internal/helper/api_index";
 
 
 export default {
@@ -57,16 +55,8 @@ export default {
       perPage: 3,
       pageSize: 2,
       count: 6,
-
-
     }
   },
-  // created() {
-  //    this.$http.get('https://jsonplaceholder.typicode.com/posts').then((data)=>{
-  //      console.log(data);
-  //      this.blogs= data.body
-  //    })
-  // },
   mounted() {
     this.getPost(),
         this.getProfilePicture();
@@ -79,7 +69,7 @@ export default {
       this.$router.push({name:"post_create"});
     },
     getPost(page = 1) {
-      axios.post('http://localhost:8000/api/admin/view-blog-post?page=' + page)
+      apiClient.post('/api/admin/view-blog-post?page=' + page)
           .then(response => {
             this.blogPost = response.data.blogPost
           })

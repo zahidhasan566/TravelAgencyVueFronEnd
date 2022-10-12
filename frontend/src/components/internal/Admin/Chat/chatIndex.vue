@@ -33,6 +33,7 @@
 <script>
 import axios from "axios";
 import Echo from 'laravel-echo'
+import apiClient from "@/components/internal/helper/api_index";
 
 export default {
   data() {
@@ -46,7 +47,7 @@ export default {
   },
   methods:{
       getChatPost(page = 1) {
-        axios.post('http://localhost:8000/api/admin/view-chat-post?page=' + page)
+        apiClient.post('/api/admin/view-chat-post?page=' + page)
             .then(response => {
               this.customer_info = response.data.customer_info
             })

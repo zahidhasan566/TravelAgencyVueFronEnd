@@ -70,6 +70,7 @@
 <script>
 
 import axios from "axios";
+import apiClient from "@/components/internal/helper/api_index";
 
 export default {
   data(){
@@ -95,7 +96,7 @@ export default {
   },
   methods:{
     getPost(page = 1) {
-      axios.post('http://localhost:8000/api/admin/home/view-blog-post?page=' + page)
+      apiClient.post('/api/admin/home/view-blog-post?page=' + page)
           .then(response => {
             this.blogPost = response.data.blogPost
           })

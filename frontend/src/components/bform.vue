@@ -2,9 +2,6 @@
   <div class="row">
     <section style=" background: url(https://images.pexels.com/photos/5032264/pexels-photo-5032264.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940)" >
   <div class="container" style="text-align: -webkit-center">
-<!--    <div class="col-md-2">-->
-
-<!--    </div>-->
     <div class="col-md-8">
       <form>
         <div class="row">
@@ -184,6 +181,7 @@
 
 <script>
 import axios from 'axios';
+import apiClient from "@/components/internal/helper/api_index";
 
 
 export default {
@@ -198,7 +196,6 @@ export default {
 
       priorities:['High','Medium','Low'],
       selectedPriority:'High',
-      // isSubmitted: false
       },
       sendSms:'',
       gender:'',
@@ -206,23 +203,8 @@ export default {
     }
   },
   methods:{
-/*    submitted(){
-      this.isSubmitted = true;
-      this.$http.post('https://jsonplaceholder.typicode.com/posts',{
-        Email: this.userdata.email,
-        password: this.userdata.password,
-        age: this.userdata.age,
-        Message: this.message,
-        SendMail: this.sendMail,
-        Gender : this.gender,
-        Priority: this.selectedPriority
-      }).then((data)=>{
-        console.log(data);
-      })
-    },*/
     saveData(){
-      console.log(this.userdata)
-      axios.post('http://localhost:8000/api/customer', {
+      apiClient.post('/api/customer', {
         Name:this.userdata.name,
         Email: this.userdata.email,
         password: this.userdata.password,
@@ -233,7 +215,7 @@ export default {
         Transport : this.transport,
         Priority: this.selectedPriority
       }).then((data)=>{
-        this.$toast("Succesfully Registered", {
+        this.$toast("Successfully Registered", {
           timeout: 1000,
         });
         setTimeout(()=>{

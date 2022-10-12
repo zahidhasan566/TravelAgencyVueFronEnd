@@ -12,12 +12,6 @@
           <th style="text-align: center;">Name</th>
           <th style="text-align: center;">Age</th>
           <th style="text-align: center;">Chat Room Id</th>
-<!--          <th>Mail</th>-->
-<!--          <th>SMS Option</th>-->
-<!--          <th>Transport</th>-->
-<!--          <th>gender</th>-->
-<!--          <th>Priority</th>-->
-<!--          <th>Comments</th>-->
           <th style="text-align: center;">Action</th>
         </tr>
         </thead>
@@ -27,19 +21,12 @@
           <td style="text-align: center; vertical-align: middle">{{customer['name']}}</td>
           <td style="text-align: center; vertical-align: middle">{{customer['age']}}</td>
           <td style="text-align: center; vertical-align: middle">{{customer['user_id']}}</td>
-<!--          <td style="text-align: center; vertical-align: middle">{{customer['email']}}</td>-->
-<!--          <td style="text-align: center; vertical-align: middle">{{customer['select_sms']}}</td>-->
-<!--          <td style="text-align: center; vertical-align: middle">{{customer['transport']}}</td>-->
-<!--          <td style="text-align: center; vertical-align: middle">{{customer['gender']}}</td>-->
-<!--          <td style="text-align: center; vertical-align: middle">{{customer['priority']}}</td>-->
-<!--          <td style="text-align: center; vertical-align: middle">{{customer['comments']}}</td>-->
           <td style="text-align: center; vertical-align: middle">  <button
               class="btn btn-primary" @click.prevent="updateData(customer['id']),$bvModal.show('editModal')">View
           </button>
             <button
                 class="btn btn-primary" style="margin-left: 5px; background: red" @click.prevent="deleteData(customer['id'])">Delete
             </button></td>
-
         </tr>
         </tbody>
       </table>
@@ -156,6 +143,7 @@
 import axios from 'axios';
 import $ from 'jquery';
 import { BModal, VBModal } from 'bootstrap-vue';
+import apiClient from "@/components/internal/helper/api_index";
 
 
 
@@ -176,7 +164,7 @@ export default {
       this.$router.push({name:'home'})
     },
     getCustomers() {
-      axios.get('http://localhost:8000/api/test1')
+      apiClient.get('/api/test1')
           .then(response => {
             console.log(response)
             this.customers = response.data.customers
@@ -187,14 +175,14 @@ export default {
     },
     updateData(Id){
       console.log(Id)
-      axios.post('http://localhost:8000/api/customer/update', {
+      apiClient.post('/api/customer/update', {
         Id:Id,
       }).then((response)=>{
         this.customers_update = response.data.customers_update
       }).catch(error => console.log(error))
     },
     updateConfirmData(Id){
-      axios.post('http://localhost:8000/api/customer/update/confirm', {
+      apiClient.post('/api/customer/update/confirm', {
         Id:Id,
         Name:this.customers_update['name'],
         Email: this.customers_update['email'],
@@ -217,7 +205,7 @@ export default {
       }).catch(error => console.log(error))
     },
     deleteData(Id){
-      axios.post('http://localhost:8000/api/customer/delete', {
+      apiClient.post('/api/customer/delete', {
         Id:Id,
       }).then((response)=>{
         this.$toast("Succesfully Deleted", {
@@ -226,7 +214,6 @@ export default {
         setTimeout(()=>{
           this.$router.go()
         },2000);
-       // this.customers_update = response.data.customers_update
       }).catch(error => console.log(error))
     }
 
