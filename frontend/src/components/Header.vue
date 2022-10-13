@@ -118,6 +118,7 @@
 </template>
 <script>
 import axios from "axios";
+import apiClient from "@/components/internal/helper/api_index";
 
 export default {
   data() {
@@ -147,7 +148,7 @@ export default {
   },
   methods:{
     getPost(page = 1) {
-      axios.post('http://localhost:8000/api/admin/view-blog-post?page=' + page)
+      apiClient.post('/api/admin/view-blog-post?page=' + page)
           .then(response => {
             this.blogPost = response.data.blogPost
           })
@@ -165,7 +166,7 @@ export default {
       }
     },
     logout(){
-      axios.post('http://localhost:8000/api/logout').then((response)=>{
+      apiClient.post('/api/logout').then((response)=>{
         localStorage.removeItem("token");
         this.$toast("Successfully Logout", {
           timeout: 2000,
