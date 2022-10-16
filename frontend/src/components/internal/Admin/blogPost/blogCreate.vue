@@ -47,9 +47,9 @@ export default {
       formData.append('postContent', this.postContent)
       formData.append('profile_picture', this.profile_picture)
       formData.append('newPost', this.newPost)
-      apiClient.post('/api/admin/create-blog-post',formData
-      //     { headers: { 'Content-Type': 'multipart/form-data', 'Content-type': 'application/json' }
-      // }
+      apiClient.post('/api/admin/create-blog-post',formData,
+          { headers: { 'Content-Type': 'multipart/form-data', 'Content-type': 'application/json' }
+      }
       ).then((response)=>{
         // window.Echo.private('post.created').listen(alert(response));
         this.$toast("Successfully data Uploaded", {
