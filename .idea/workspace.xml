@@ -12,7 +12,7 @@
     <execution />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/backend/TravelAgencyVuebackEnd" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -48,7 +48,7 @@
       <workItem from="1665554101112" duration="12177000" />
       <workItem from="1665632099635" duration="9333000" />
       <workItem from="1665663783224" duration="1877000" />
-      <workItem from="1665892006071" duration="5127000" />
+      <workItem from="1665892006071" duration="5470000" />
     </task>
     <servers />
   </component>
