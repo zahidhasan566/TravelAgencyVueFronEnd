@@ -1,8 +1,8 @@
 import axios from 'axios'
 // import store from 'store'
 import routes from '../../../routes'
-// import { notification } from 'ant-design-vue'
-axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+// // import { notification } from 'ant-design-vue'
+// axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 const apiClient = axios.create({
     // baseURL: '/api',
     baseURL: process.env.VUE_APP_API_URL,
