@@ -153,7 +153,7 @@ export default {
           device_name: this.device_name
         }).then((response)=>{
           localStorage.setItem('token',response.data);
-          routes.push({name:"login_dashboard"});
+          this.$router.push({name:"login_dashboard"});
           this.$toast("Successfully logged In", {
             timeout: 1000,
           });
