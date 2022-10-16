@@ -208,11 +208,11 @@ export default {
       apiClient.post('/api/customer/delete', {
         Id:Id,
       }).then((response)=>{
-        this.$toast("Succesfully Deleted", {
+        this.$toast("Successfully Deleted", {
           timeout: 2000,
         });
         setTimeout(()=>{
-          this.$router.go()
+          this.$router.go();
         },2000);
       }).catch(error => console.log(error))
     }

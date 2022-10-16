@@ -124,6 +124,7 @@ import axios from "axios";
 import $ from 'jquery';
 import { BModal, VBModal } from 'bootstrap-vue';
 import apiClient from "@/components/internal/helper/api_index";
+import routes from '../../../routes'
 
 export default {
   data() {
@@ -152,7 +153,7 @@ export default {
           device_name: this.device_name
         }).then((response)=>{
           localStorage.setItem('token',response.data);
-          this.$router.push({name:"login_dashboard"});
+          routes.push({name:"login_dashboard"});
           this.$toast("Successfully logged In", {
             timeout: 1000,
           });

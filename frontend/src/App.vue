@@ -7,6 +7,8 @@
 </template>
 
 <script>
+import routes from "@/routes";
+
 export default {
   name: 'App',
 
@@ -17,7 +19,7 @@ export default {
     loginNext: [
       {
 
-        href: this.$router.push({ name: 'login' })
+        href: routes.push({ name: 'login' })
       }
     ]
 
@@ -38,7 +40,7 @@ export default {
       }
     },
     goToHome(){
-      this.$router.push({ name: 'login' })
+      routes.push({ name: 'login' })
     }
   }
 };
