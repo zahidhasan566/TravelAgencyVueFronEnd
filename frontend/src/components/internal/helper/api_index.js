@@ -15,6 +15,7 @@ apiClient.interceptors.request.use(request => {
     if (token) {
         request.headers.Authorization = `Bearer ${token}`
         request.headers.AccessToken = token
+        request.headers.common['Access-Control-Allow-Origin'] = '*';
     }
     return request
 })
